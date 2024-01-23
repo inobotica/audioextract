@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="{{url_for('static', filename='/css/styles.css')}}" />
-        <title>Test HTML</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}">
+        <title>Extrae audio de un video en 3 pasos</title>
     </head>
     <body>
+        <form id="package_form" action="" method="POST" enctype="multipart/form-data">
+            <div class="divobject">                
+                <p><input id="upload_button" type="file" class="btn pick" name="file">Selecciona el video</p>    
+            </div>
+            <div class="divobject">
+                <button class="btn pick">.mp3</button>        
+                <button class="btn pick">.wav</button>        
+                <button class="btn pick">.flac</button>        
+            </div>
+            <div class="divobject">
+                <p><input id="submit_button" type="submit" class="btn danger" value="Procesar">            
+                <!--<button class="btn danger">Procesar</button> -->       
+            </div>
+        </form>        
         <h1>{{greet}}</h1>
     </body>
 </html>
