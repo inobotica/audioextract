@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+    </head>
+    <body>        
+        <p>
+            <input type="file" id="videoInput">
+            <button onclick="uploadVideo()">Upload Video</button>
+        </p>
+        <p>
+            <button id="downloadButton" style="display: none;" onclick="downloadVideo()">Download Video</button>
+        </p>
+        
+    </body>
+<script>
+let filename = ""; // Store the filename from the server response
+
+async function uploadVideo() {
+    const fileInput = document.getElementById('videoInput');
+    const button = document.getElementById('downloadButton');
+
+    if (fileInput.files.length === 0) {
+        alert("Please select a file first.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        const response = await fetch("http://69.164.197.239:5000", {
+            method: "POST",
+            body: formData,
+        });
+
+        const result = await response.json(); // Expecting JSON response
+
+        if (response.ok) {
+            // Show button when status is 200-299 (successful)
+            button.style.display = "block";
+            filename = result.filename;
+        } else {
+            // Hide button if the response is an error
+            button.style.display = "none";
+            console.error("Upload failed:", await response.text());
+        }
+    } catch (error) {
+        console.error("Error uploading video:", error);
+        button.style.display = "none";
+    }
+}
+
+function downloadVideo() {
+    if (!filename) {
+        alert("No file available to download.");
+        return;
+    }
+
+    const fileUrl = `http://69.164.197.239:5000/uploads/${filename}`;
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+
+</html>
