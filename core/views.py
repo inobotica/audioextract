@@ -34,5 +34,6 @@ def index():
 
 @app.route('/uploads/<filename>', methods = ['GET'])
 def uploads(filename):
+    print("Extracting audio from", filename)
     audio_filename = extract_audio(os.path.join(UPLOAD_FOLDER, filename))
     return send_file(audio_filename, as_attachment=True)

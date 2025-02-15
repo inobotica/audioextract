@@ -9,4 +9,7 @@ def extract_audio(filename):
     audio = video.audio
 
     #Export the Audio
-    audio.write_audiofile("/tmp/A.mp3")
+    new_filename = filename[:filename.find(".")] + ".mp4"
+
+    audio.write_audiofile(new_filename)
+    return new_filename
