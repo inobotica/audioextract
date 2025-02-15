@@ -1,15 +1,20 @@
 # Import moviepy
+import os
+
 import moviepy.editor
 
-def extract_audio(filename):
-    #Load the Video
-    video = moviepy.editor.VideoFileClip(filename)
 
-    #Extract the Audio
+def extract_audio(filename: str) -> str:
+    # Load the Video
+    video = moviepy.editor.VideoFileClip(filename)
+    audiopath, audioname = os.path.split(filename)
+    audioname = audioname.split(".")[0] + ".mp3"
+    audiofilepath = os.path.join(audiopath, audioname)
+    print("audio filepath:", audiofilepath)
+    # Extract the Audio
     audio = video.audio
 
-    #Export the Audio
-    new_filename = filename[:filename.find(".")] + ".mp4"
+    # Export the Audio
+    audio.write_audiofile(audiofilepath)
 
-    audio.write_audiofile(new_filename)
-    return new_filename
+    return audiofilepath

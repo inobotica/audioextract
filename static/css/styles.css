@@ -1,11 +1,11 @@
-body {    	
+body {
     background: #F8FAFC;
     font-family: Arial, Helvetica, sans-serif;
 }
 .divobject {
     background: #fafafa;
     border-radius: 4px;
-    padding: 1%;      
+    padding: 1%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     margin:auto;
     margin-top:1%;
@@ -40,7 +40,7 @@ h1 {
     color: white;
 }
 /* Red */
-.danger {    
+.danger {
     background: red;
     border-color: red;
     color: white
@@ -50,4 +50,3 @@ h1 {
     border-color: #f44336;
     color: white;
 }
-    
